@@ -438,6 +438,54 @@ Unlike insertion sort, this happens **even if the array is already sorted** — 
 
 ---
 
+# 8. Heap Sort — **O(n log n)**
+
+### Idea
+
+Turn the array into a **max-heap** (a binary tree stored in the array where every parent ≥ its children), then repeatedly move the root — the largest value — to the end.
+
+For index `i`:
+
+```
+left child  = 2i + 1
+right child = 2i + 2
+```
+
+Example:
+
+```
+[5, 3, 8, 4, 2]
+```
+
+Build max-heap:
+
+```
+[8, 4, 5, 3, 2]
+```
+
+Swap root to the end, shrink the heap, re-heapify:
+
+```
+[5, 4, 2, 3 | 8]
+[4, 3, 2 | 5, 8]
+[3, 2 | 4, 5, 8]
+[2 | 3, 4, 5, 8]
+```
+
+### Why complexity is O(n log n)
+
+The heap is a tree of height **log n**.
+
+Each of the **n** removals pushes one element down at most **log n** levels:
+
+```
+n removals × log n steps → O(n log n)
+```
+
+Building the heap first costs only **O(n)**, so the total stays O(n log n) — in the **best, average and worst case**, unlike quick sort. It also sorts **in place** (O(1) extra memory), unlike merge sort.
+
+---
+
 # Final Intuition
 
 | Algorithm      | Idea                        | Complexity         |
@@ -449,6 +497,7 @@ Unlike insertion sort, this happens **even if the array is already sorted** — 
 | Merge Sort     | Divide and merge            | O(n log n)         |
 | Quick Sort     | Partition around pivot      | O(n log n) average |
 | Selection Sort | Select the minimum each pass | O(n²)             |
+| Heap Sort      | Pull the max from a heap    | O(n log n)         |
 
 ---
 
