@@ -486,6 +486,44 @@ Building the heap first costs only **O(n)**, so the total stays O(n log n) — i
 
 ---
 
+# 9. Counting Sort — **O(n + k)**
+
+### Idea
+
+Don't compare elements at all. **Count how many times each value appears**, then write the values back out in order.
+
+Works for **integers in a known, small range** (`k` = max − min + 1).
+
+Example:
+
+```
+[5, 3, 8, 4, 2]
+```
+
+Range is 2..8, so count each value:
+
+```
+value:  2  3  4  5  6  7  8
+count:  1  1  1  1  0  0  1
+```
+
+Walk the counts left to right:
+
+```
+[2, 3, 4, 5, 8]
+```
+
+### Why complexity is O(n + k)
+
+```
+count every element      → n steps
+walk every possible value → k steps
+```
+
+No comparisons, so it beats the **O(n log n)** limit that comparison sorts can't go below. The catch: if the range is huge (e.g. `[1, 1000000]`), `k` dominates and it wastes time and memory.
+
+---
+
 # Final Intuition
 
 | Algorithm      | Idea                        | Complexity         |
@@ -498,6 +536,7 @@ Building the heap first costs only **O(n)**, so the total stays O(n log n) — i
 | Quick Sort     | Partition around pivot      | O(n log n) average |
 | Selection Sort | Select the minimum each pass | O(n²)             |
 | Heap Sort      | Pull the max from a heap    | O(n log n)         |
+| Counting Sort  | Count each value, no compares | O(n + k)         |
 
 ---
 
