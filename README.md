@@ -384,6 +384,60 @@ O(n²)
 
 ---
 
+# 7. Selection Sort — **O(n²)**
+
+### Idea
+
+Repeatedly **find the smallest remaining element** and swap it into the next position.
+
+Example:
+
+```
+[5, 3, 8, 4, 2]
+```
+
+Pass 1: smallest is 2 → swap with 5
+
+```
+[2, 3, 8, 4, 5]
+```
+
+Pass 2: smallest of the rest is 3 → already in place
+
+```
+[2, 3, 8, 4, 5]
+```
+
+Pass 3: smallest of the rest is 4 → swap with 8
+
+```
+[2, 3, 4, 8, 5]
+```
+
+Pass 4: smallest of the rest is 5 → swap with 8
+
+```
+[2, 3, 4, 5, 8]
+```
+
+### Why complexity is O(n²)
+
+To find each minimum you scan **everything not yet sorted**:
+
+```
+(n-1) + (n-2) + ... + 1
+```
+
+Which equals:
+
+```
+n(n-1)/2 → O(n²)
+```
+
+Unlike insertion sort, this happens **even if the array is already sorted** — there is no best-case shortcut. It does at most **n − 1 swaps**, though, which is useful when writes are expensive.
+
+---
+
 # Final Intuition
 
 | Algorithm      | Idea                        | Complexity         |
@@ -394,6 +448,7 @@ O(n²)
 | Insertion Sort | Insert into sorted portion  | O(n²)             |
 | Merge Sort     | Divide and merge            | O(n log n)         |
 | Quick Sort     | Partition around pivot      | O(n log n) average |
+| Selection Sort | Select the minimum each pass | O(n²)             |
 
 ---
 
