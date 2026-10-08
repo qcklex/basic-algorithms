@@ -524,6 +524,45 @@ No comparisons, so it beats the **O(n log n)** limit that comparison sorts can't
 
 ---
 
+# 10. Jump Search — **O(√n)**
+
+### Idea
+
+On a **sorted** array, jump ahead in blocks of size **√n** until you pass the target, then linear-search inside that one block.
+
+Example (n = 9, so step = 3):
+
+```
+[1, 3, 5, 7, 9, 11, 13, 15, 17]
+search 13
+```
+
+Jump, checking the last element of each block:
+
+```
+5 < 13 → jump
+11 < 13 → jump
+17 ≥ 13 → target is in this block
+```
+
+Scan the block:
+
+```
+13 → found at index 6
+```
+
+### Why complexity is O(√n)
+
+```
+at most n/√n = √n jumps
++ at most √n steps inside a block
+= O(√n)
+```
+
+Slower than binary search's **O(log n)**, but it only ever moves **forward**, which helps when stepping backwards is expensive (e.g. data on tape or a linked structure).
+
+---
+
 # Final Intuition
 
 | Algorithm      | Idea                        | Complexity         |
@@ -537,6 +576,7 @@ No comparisons, so it beats the **O(n log n)** limit that comparison sorts can't
 | Selection Sort | Select the minimum each pass | O(n²)             |
 | Heap Sort      | Pull the max from a heap    | O(n log n)         |
 | Counting Sort  | Count each value, no compares | O(n + k)         |
+| Jump Search    | Jump √n blocks, then scan   | O(√n)              |
 
 ---
 
